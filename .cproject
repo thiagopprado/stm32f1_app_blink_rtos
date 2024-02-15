@@ -44,8 +44,6 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1171701654" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../core/inc"/>
-									<listOptionValue builtIn="false" value="../external_libs/stm32f1_bm_drivers/gpio"/>
-									<listOptionValue builtIn="false" value="../external_libs/stm32f1_bm_drivers/rcc"/>
 									<listOptionValue builtIn="false" value="../external_libs/STM32CubeF1_lite/Drivers/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="../external_libs/STM32CubeF1_lite/Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
 									<listOptionValue builtIn="false" value="../external_libs/STM32CubeF1_lite/Drivers/STM32F1xx_HAL_Driver/Inc"/>
