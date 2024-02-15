@@ -11,8 +11,6 @@
 /* Private types -------------------------------------------------------------*/
 
 /* Private defines -----------------------------------------------------------*/
-#define seconds(val)        (val * configTICK_RATE_HZ)
-#define milliseconds(val)   (val * configTICK_RATE_HZ / 1000)
 
 /* Private variables ---------------------------------------------------------*/
 
@@ -61,7 +59,7 @@ static void task_blink(void *param) {
     HAL_GPIO_Init(GPIOC, &gpio_init);
 
     while (1) {
-        xTaskDelayUntil(&last_wake_time, milliseconds(1000));
+        xTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(1000));
         HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     }
 }
