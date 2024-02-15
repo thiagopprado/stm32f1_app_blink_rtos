@@ -6,8 +6,6 @@
 #include "FreeRTOSConfig.h"
 #include "task.h"
 
-#include "gpio.h"
-
 #include "stm32f1xx_hal.h"
 
 /* Private types -------------------------------------------------------------*/
@@ -51,17 +49,20 @@ static void clock_config(void)
 }
 
 static void task_blink(void *param) {
-    gpio_state_t state = GPIO_STATE_HIGH;
-    TickType_t last_wake_time = 0;
+    TickType_t last_wake_time = xTaskGetTickCount();
+    GPIO_InitTypeDef gpio_init = { 0 };
 
-    gpio_setup(GPIO_PORTC, 13, GPIO_MODE_OUTPUT_50, GPIO_CFG_OUT_PUSH_PULL);
-    last_wake_time = xTaskGetTickCount();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+
+    gpio_init.Pin = GPIO_PIN_13;
+    gpio_init.Mode = GPIO_MODE_OUTPUT_PP;
+    gpio_init.Pull = GPIO_NOPULL;
+    gpio_init.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOC, &gpio_init);
 
     while (1) {
         xTaskDelayUntil(&last_wake_time, milliseconds(1000));
-
-        gpio_write(GPIO_PORTC, 13, state);
-        state = !state;
+        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     }
 }
 
